@@ -11,10 +11,10 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $users = User::paginate(10);
-    return view('users.index', ['users' => $users]);
-}
+    {
+        $users = User::paginate(10);
+        return view('users.index', ['users' => $users]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +37,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id); // Récupère l'utilisateur ou retourne une erreur 404 si non trouvé
+        return view('users.show', compact('user'));
     }
 
     /**
